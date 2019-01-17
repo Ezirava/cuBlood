@@ -81,6 +81,7 @@ app.post('/users/create', (req, res) => {
   })
 });
 
+//to delete datas.
 // user.bulkCreate([
 //   {subject: 'programming', status: 'executing'},
 //   {subject: 'reading', status: 'executing'},
