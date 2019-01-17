@@ -34,7 +34,7 @@ const user = sequelize.define('user', {
     type: Sequelize.STRING
   },
   bloodType: {
-    type: Sequelize.STRING
+    type: Sequelize.ENUM('A-', 'A+', 'B-', 'B+', 'O-', 'O+', 'AB-', 'AB+')
   },
   birthday: {
     type: Sequelize.DATEONLY
@@ -60,7 +60,10 @@ console.log(user);
 //   // Table created
 //   return console.log("User table created.")
 // });
-app.get('/all-user', (req, res) => {
+
+app.get('/',(req,res) => res.json({status: "hello"}))
+
+app.get('/users/all', (req, res) => {
   user.findAll().then(a => {
     console.log(a)
     res.json({ status: "Success!", data: a })
@@ -70,7 +73,7 @@ app.get('/all-user', (req, res) => {
   })
 })
 
-app.post('/create-user', (req, res) => {
+app.post('/users/create', (req, res) => {
   user.create(req.body).then(() => {
     res.json({ status: "success!" })
   }).catch(e => {
@@ -78,7 +81,23 @@ app.post('/create-user', (req, res) => {
   })
 });
 
-
+// user.bulkCreate([
+//   {subject: 'programming', status: 'executing'},
+//   {subject: 'reading', status: 'executing'},
+//   {subject: 'programming', status: 'finished'}
+// ]).then(() => {
+//   return user.destroy({
+//     where: {
+//       firstName: 'John'
+//     },
+//     truncate: true /* this will ignore where and truncate the table instead */
+//   });
+// }).then(affectedRows => {
+//   // affectedRows will be 2
+//   return user.findAll();
+// }).then(tasks => {
+//   console.log(tasks) // no programming, just reading :(
+// })
 
 //Binding the server to a port(3000)
-app.listen(3000, () => console.log('express server started at port 3000'));
+app.listen(port, () => console.log(`Example app listening on port ${port}!`));
