@@ -8,7 +8,7 @@ const port = 3000
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
-const sequelize = new Sequelize('example', 'postgres', '110140', {
+const sequelize = new Sequelize('example', 'postgres', 'xxxxxx', {
   host: 'localhost',
   dialect: 'postgres',
 
