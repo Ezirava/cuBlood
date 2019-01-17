@@ -8,7 +8,7 @@ const port = 3000
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
-const sequelize = new Sequelize('example', 'postgres', '110140', {
+const sequelize = new Sequelize('example', 'postgres', 'xxxxxx', {
   host: 'localhost',
   dialect: 'postgres',
 
@@ -100,4 +100,8 @@ app.post('/users/create', (req, res) => {
 // })
 
 //Binding the server to a port(3000)
+<<<<<<< HEAD:test.js
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+=======
+app.listen(3000, () => console.log('express server started at port 3000'));
+>>>>>>> 414bbdd734921bd63be3165f0af37b851fdc9d25:user.js
