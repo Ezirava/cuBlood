@@ -8,7 +8,7 @@ const port = 3000
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
-const sequelize = new Sequelize('example', 'postgres', 'xxxxxx', {
+const sequelize = new Sequelize('example', 'postgres', '110140', {
   host: 'localhost',
   dialect: 'postgres',
 
@@ -18,11 +18,10 @@ const sequelize = new Sequelize('example', 'postgres', 'xxxxxx', {
     acquire: 30000,
     idle: 10000
   },
-
   // http://docs.sequelizejs.com/manual/tutorial/querying.html#operators
   operatorsAliases: false
 });
-
+const Op = sequelize.Op
 const user = sequelize.define('user', {
   firstName: {
     type: Sequelize.STRING
@@ -81,7 +80,17 @@ app.post('/users/create', (req, res) => {
   })
 });
 
-//to delete datas.
+const id = 35
+app.get(`/users/${id}`,(req,res) => {
+  user.findById(id).then(b => {
+    console.log(b)
+    res.json({ status: "Here is your profile!",data: b})
+  }).catch(e => {
+    res.json({ status: "Invalid ID or you are not registed!"})
+  })
+})
+
+//to delete data.
 // user.bulkCreate([
 //   {subject: 'programming', status: 'executing'},
 //   {subject: 'reading', status: 'executing'},
